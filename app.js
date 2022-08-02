@@ -46,20 +46,30 @@ app.post('/interactions', async function (req, res) {
 
     if (name === 'mc') {
       console.log('mc res', res);
-      let result = await mcUtil.status(process.env.SERVER_IP, Number(process.env.SERVER_PORT), {
-        timeout: 1000 * 5 // timeout in ms
-      });
-      console.log(result);
-      let content = "Offline";
-      if(result?.players) {
-        content = "Online\nPlayers: " + result.players.online;
+      try {
+        let result = await mcUtil.status(process.env.SERVER_IP, Number(process.env.SERVER_PORT), {
+          timeout: 1000 // timeout in ms
+        });
+        
+        console.log(result);
+        
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: "Online\nPlayers: " + result.players.online
+          }
+        });
       }
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: content
-        }
-      });
+      catch(e) {
+        console.log(e)
+        return res.send({
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content: 'Offline'
+          }
+        });
+      }
+      
     }
   }
 
