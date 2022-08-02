@@ -80,3 +80,9 @@ export const CHALLENGE_COMMAND = {
   ],
   type: 1,
 };
+
+export const MC_COMMAND = {
+  name: 'mc',
+  description: 'MC Server test',
+  type: 1,
+};

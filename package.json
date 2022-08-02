@@ -5,18 +5,24 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Shay DeWael",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "dependencies": {
     "discord-interactions": "^3.2.0",
-    "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "minecraft-server-util": "^5.3.0",
     "node-fetch": "^3.2.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "keywords": [
+    "discord",
+    "node"
+  ]
 }
